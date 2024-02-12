@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Quicksand } from "next/font/google";
 import "./globals.css";
+import Header from "@/app/ui/header/Header"
 
 const quicksand = Quicksand({ subsets: ["latin"], weight: ["300", "400", "500", "600", "700"] });
 
@@ -15,8 +16,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={quicksand.className}>{children}</body>
+    <html lang='en'>
+      <body className={quicksand.className}>
+        <Header />
+        <main>{children}</main>
+      </body>
     </html>
   );
 }
