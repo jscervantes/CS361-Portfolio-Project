@@ -3,7 +3,10 @@ import { Quicksand } from "next/font/google";
 import "./globals.css";
 import Header from "@/app/ui/header/Header"
 
-const quicksand = Quicksand({ subsets: ["latin"], weight: ["300", "400", "500", "600", "700"] });
+const quicksand = Quicksand({ 
+  subsets: ["latin"], 
+  weight: ["300", "400", "500", "600", "700"] 
+});
 
 export const metadata: Metadata = {
   title: "plant.io",
