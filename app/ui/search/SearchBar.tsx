@@ -3,19 +3,29 @@
 import { SubmitSearch } from "./Buttons"
 import { useState } from 'react'
 
-export default function Search({ getSearchResults }: {getSearchResults: any}) {
+export const SearchBar = ( {setResults }) => {
 
   const [query, setQuery] = useState('');
 
-  const handleSearch = async (e) => {
-    e.preventDefault()
-    const response = await fetch(`https://perenual.com/api/species-list?key=${process.env.NEXT_PUBLIC_API_KEY}&q=${query}`, {
-      "method": "GET",
-    })
-    const plant = await response.json()
-    console.log(plant)
+  const fetchData = (value) => {
+    fetch(`https://jsonplaceholder.typicode.com/users`)
+    .then((response) => response.json())
+    .then((json) => {
+      const results = json.filter((user) => {
+        return (
+          value &&
+          user &&
+          user.name &&
+          user.name.toLowerCase().includes(value)
+        )
+      });
+      setResults(results);
+    });
+  }
 
-    getSearchResults(plant)
+  const handleSearch = (value) => {
+    setQuery(value);
+    fetchData(value);
   }
 
   return (
@@ -30,10 +40,8 @@ export default function Search({ getSearchResults }: {getSearchResults: any}) {
             value={query}
             className="border border-gray-900 rounded mx-2 pl-2" 
             placeholder="plantssss"
-            min="1"
-            required
             onChange={(e) => {
-              setQuery(e.target.value);
+              handleSearch(e.target.value);
             }}
           />
           <SubmitSearch />
