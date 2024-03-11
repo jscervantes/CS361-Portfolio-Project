@@ -26,8 +26,8 @@ export default function Header() {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/about" className="block py-2 px-3 text-gray-900 bg-accent-green rounded md:hover:bg-transparent md:border-0 md:hover:text-gray-700">
-                    About
+                  <Link href="/random" className="block py-2 px-3 text-gray-900 bg-accent-green rounded md:hover:bg-transparent md:border-0 md:hover:text-gray-700">
+                    Random
                   </Link>
                 </li>
               </ul>

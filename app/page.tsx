@@ -1,8 +1,9 @@
 'use client'
 
 import Search from '@/app/ui/search/Search'
+
 import Plants from '@/app/ui/Plants'
-import {useState } from "react"
+import { SetStateAction, useState } from "react"
 
 export default function Home() { 
   const [plants, setPlants] = useState([]);
@@ -15,8 +16,11 @@ export default function Home() {
       <h3 className="p-2">create a profile to begin a collection of plants and stay up to date on watering and sun times</h3>
       <div className="my-6">
         <Search 
-        getSearchResults={(plants) => setPlants(plants)}
+        getSearchResults={(plants: SetStateAction<any[]>) => setPlants(plants)}
         />
+      </div>
+      <div>
+  {/*      <RandomPlant /> */}
       </div>
       <Plants plants={plants} />
     </div>

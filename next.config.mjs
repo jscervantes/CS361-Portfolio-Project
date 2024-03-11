@@ -1,8 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  experimental: {
+    serverComponentsExternalPackages: ['zeromq']
+  },
   images: {
-    domains: ['perenual.com']
-  }
+    domains: ['https://perenual.com']
+  },
+
 };
 
 export default nextConfig;

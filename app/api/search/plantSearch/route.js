@@ -13,7 +13,7 @@ export async function GET(request) {
   const plants = await fetchPlants();
   const { searchParams } = new URL(request.url);
   console.log(request.url);
-  console.log("im gay")
+  console.log("henlo")
   const query = searchParams.get('query');
   
   const filteredPlants = plants.data.filter((plant) => {
