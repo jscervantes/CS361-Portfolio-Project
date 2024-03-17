@@ -19,9 +19,6 @@ export default function Home() {
         getSearchResults={(plants: SetStateAction<any[]>) => setPlants(plants)}
         />
       </div>
-      <div>
-  {/*      <RandomPlant /> */}
-      </div>
       <Plants plants={plants} />
     </div>
   );
