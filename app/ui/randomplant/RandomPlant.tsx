@@ -58,13 +58,19 @@ export default function RandomPlant() {
       <div className="row text-left mx-auto mt-8 max-w-[1260px] gap-10">
       {randomPlant.map((plant) => (
         <div key={plant.id} className="flex mb-10 rounded shadow-md hover:shadow-lg">
-          <Image
+          {plant.default_image ? (
+            <Image 
             className="rounded-xl m-8"
-            src={plant.default_image.small_url}
-            alt={plant.common_name}
-            width={200}
-            height={200}
-          />
+              src={plant.default_image.small_url}
+              width={200}
+              height={200}
+              alt={plant.common_name}
+            />
+          ) : (
+            <div className="m-16">
+              No image available
+            </div>
+          )}
           <div className="flex flex-col m-8">
             <h3>{plant.common_name}</h3>
             <p>{plant.scientific_name}</p>
