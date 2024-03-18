@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { useEffect, useState } from 'react';
 
 export default function RandomPlant() {
@@ -33,7 +34,8 @@ export default function RandomPlant() {
         }
         const data = await response.json();
         setRandomPlant(data);
-        setShowPlant(true)
+        setShowPlant(true);
+        console.log(data)
       } catch (error) {
         setError(error);
       }
@@ -48,17 +50,25 @@ export default function RandomPlant() {
 
   return (
     <div>
-      <button onClick={handleRandomPlant}>
+      <button className="py-2 px-3 text-gray-900 bg-dark-green rounded hover:bg-accent-green  md:border-0 md:hover:text-grey-700" onClick={handleRandomPlant}>
         Random Plant
       </button>
       {
       showPlant && 
-      <div className="row text-left mx-auto max-w-[1260px] gap-10">
+      <div className="row text-left mx-auto mt-8 max-w-[1260px] gap-10">
       {randomPlant.map((plant) => (
         <div key={plant.id} className="flex mb-10 rounded shadow-md hover:shadow-lg">
-          <div className="flex flex-col">
+          <Image
+            className="rounded-xl m-8"
+            src={plant.default_image.small_url}
+            alt={plant.common_name}
+            width={200}
+            height={200}
+          />
+          <div className="flex flex-col m-8">
             <h3>{plant.common_name}</h3>
             <p>{plant.scientific_name}</p>
+            <p>{plant.description}</p>
           </div>
         </div>
       ))}

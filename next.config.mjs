@@ -4,7 +4,12 @@ const nextConfig = {
     serverComponentsExternalPackages: ['zeromq']
   },
   images: {
-    domains: ['https://perenual.com']
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'perenual.com'
+      }
+    ]
   },
 
 };
