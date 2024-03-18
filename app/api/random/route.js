@@ -1,10 +1,9 @@
 
-export async function GET(req, res) {
-
+export async function fetchRandomPlantData() {
   const zmq = require("zeromq");
   const requester = zmq.socket('req');
 
-  const replyPromise = new Promise((resolve, reject) => {
+  return new Promise((resolve, reject) => {
     requester.on("message", function(reply) {
       try {
         const random_plant = JSON.parse(reply);
@@ -16,23 +15,24 @@ export async function GET(req, res) {
         requester.close();
       }
     });
-  });
 
-  try {
-    await requester.connect("tcp://localhost:5555");
+    requester.connect("tcp://localhost:5555");
     console.log("Sending request...");
-    await requester.send("get_random_plant_details");
+    requester.send("get_random_plant_details");
+  });
+}
 
-    const random_plant = await replyPromise;
+export async function GET(req, res) {
+  try {
+    const random_plant = await fetchRandomPlantData();
 
     // Wrap the single plant in an array
-    const plantArray = Array.isArray(random_plant)
-      ? random_plant
-      : [random_plant];
+    const plantArray = Array.isArray(random_plant) ? random_plant : [random_plant];
 
     return Response.json(plantArray);
   } catch (err) {
     console.error(err);
-    return Response.json({ error: "Internal server error"});
+    return Response.status(500).json({ error: "Internal server error" });
   }
 }
+
