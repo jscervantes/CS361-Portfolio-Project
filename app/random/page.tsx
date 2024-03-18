@@ -1,3 +1,4 @@
+"use client"
 
 import RandomPlant from '@/app/ui/randomplant/RandomPlant'
 
