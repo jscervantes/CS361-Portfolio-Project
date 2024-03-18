@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 export default function RandomPlant() {
   const [randomPlant, setRandomPlant] = useState([]);
@@ -32,7 +32,13 @@ export default function RandomPlant() {
 
   return (
     <div>
-      <button className="py-2 px-3 text-gray-900 bg-dark-green rounded hover:bg-accent-green  md:border-0 md:hover:text-grey-700" onClick={handleRandomPlant}>
+      <button 
+        className="
+          py-2 px-3 text-gray-900 bg-dark-green rounded hover:bg-accent-green  
+          md:border-0 md:hover:text-grey-700
+          " 
+        onClick={handleRandomPlant}
+        >
         Random Plant
       </button>
       {
