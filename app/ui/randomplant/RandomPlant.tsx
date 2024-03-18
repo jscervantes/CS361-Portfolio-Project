@@ -8,23 +8,6 @@ export default function RandomPlant() {
   const [showPlant, setShowPlant] = useState(false);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    const fetchPlant = async () => {
-      try {
-        const response = await fetch('/api/random');
-        if (!response.ok) {
-          throw new Error('Failed to fetch data');
-        }
-        const data = await response.json();
-        setRandomPlant(data);
-      } catch (error) {
-        setError(error);
-      }
-    };
-    
-    fetchPlant();  
-}, []);  
-
   function handleRandomPlant() {
     const fetchPlant = async () => {
       try {
@@ -35,7 +18,6 @@ export default function RandomPlant() {
         const data = await response.json();
         setRandomPlant(data);
         setShowPlant(true);
-        console.log(data)
       } catch (error) {
         setError(error);
       }
